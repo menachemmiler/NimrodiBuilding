@@ -15,13 +15,6 @@ function App() {
   return (
     <div>
       <Layout />
-      <Routes>
-        <Route index element={<Reception />} />
-        <Route
-          path="/floor/:index"
-          element={<PrivateRoute component={<Floor />} />}
-        />
-      </Routes>
     </div>
   );
 }

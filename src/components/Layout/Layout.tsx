@@ -1,10 +1,14 @@
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, Route, Routes, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useBuildingData from "../../utils/BuildingDataProvider";
 import "./Layout.css";
+import Reception from "../../pages/Reception/Reception";
+import Floor from "../../pages/Floor/Floor";
+import Forbidden from "../../pages/Forbidden/Forbidden";
+import PrivateRoute from "../../utils/PrivateRoute";
 
-const   Layout: React.FC = () => {
+const Layout: React.FC = () => {
   const floorAccess = useSelector(
     (state: {
       floorAccess: {
@@ -19,7 +23,7 @@ const   Layout: React.FC = () => {
       <nav className="navbar">
         <h1>מגדל נמרודי</h1>
         <div className="nav-links">
-            <Link to="/">Home</Link>
+          <Link to="/">Home</Link>
           {floorAccess.map((floor: boolean, index: number) => (
             <Link key={index} to={`/floor/${index}`}>
               {getFloorByIndex(index)?.purpose || `Floor ${index + 1}`}
@@ -28,7 +32,18 @@ const   Layout: React.FC = () => {
         </div>
       </nav>
 
-      <Outlet />
+      <Routes>
+        <Route path="/forbidden" element={<Forbidden />} />
+        <Route index element={<Reception />} />
+        <Route
+          path="/floor/:index"
+          element={
+            <PrivateRoute>
+              <Floor/>
+            </PrivateRoute>
+          }
+        />
+      </Routes>
 
       <footer className="layout-footer">
         <h2>About מגדל נמרודי</h2>
