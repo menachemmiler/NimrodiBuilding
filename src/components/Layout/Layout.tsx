@@ -4,9 +4,7 @@ import { useSelector } from "react-redux";
 import useBuildingData from "../../utils/BuildingDataProvider";
 import "./Layout.css";
 import Reception from "../../pages/Reception/Reception";
-import Floor from "../../pages/Floor/Floor";
-import Forbidden from "../../pages/Forbidden/Forbidden";
-import PrivateRoute from "../../utils/PrivateRoute";
+
 
 const Layout: React.FC = () => {
   const floorAccess = useSelector(
@@ -31,7 +29,6 @@ const Layout: React.FC = () => {
           ))}
         </div>
       </nav>
-
       <Outlet/>
 
       <footer className="layout-footer">
