@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Outlet, Route, Routes, useNavigate } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useBuildingData from "../../utils/BuildingDataProvider";
 import "./Layout.css";
@@ -32,18 +32,7 @@ const Layout: React.FC = () => {
         </div>
       </nav>
 
-      <Routes>
-        <Route path="/forbidden" element={<Forbidden />} />
-        <Route index element={<Reception />} />
-        <Route
-          path="/floor/:index"
-          element={
-            <PrivateRoute>
-              <Floor/>
-            </PrivateRoute>
-          }
-        />
-      </Routes>
+      <Outlet/>
 
       <footer className="layout-footer">
         <h2>About מגדל נמרודי</h2>
