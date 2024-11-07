@@ -3,7 +3,7 @@ import Floor from "../types/Floor";
 import buildingjson from "../data/building.json";
 
 const useBuildingData = () => {
-  const [buildingData, setBuildingData] = useState<Floor[]>([]);
+  const [buildingData, setBuildingData] = useState<Floor[]>(buildingjson);
 
   //FILL HERE LOGIC TO SET THE BUILDING DATA
 
@@ -13,7 +13,7 @@ const useBuildingData = () => {
     return theFloor;
   };
   const getListOfActivities = (): string[] => {
-    //FILL HERE
+    return buildingData.map((f) => f.activity);
   };
   return {
     buildingData,

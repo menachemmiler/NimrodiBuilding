@@ -16,13 +16,16 @@ const Floor: React.FC = () => {
   const activities = getListOfActivities();
 
   const handleClick = () => {
+    console.log(`activity ${thisFloorActivity}
+      role ${currentRole}
+      activities ${activities}`);
+
     const isVerified = useIsVerified({
       activity: thisFloorActivity,
       role: currentRole,
       activities,
     });
-    // if (isVerified) {
-    if (true) {
+    if (isVerified) {
       alert(`You are currently ${thisFloorActivity}`);
     } else {
       navigate("/forbidden");
